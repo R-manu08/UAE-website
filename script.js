@@ -22,6 +22,22 @@ let calculatorState = {
     }
 };
 
+// ===== HELPER FUNCTIONS =====
+function saveLead(type, data) {
+    const leads = JSON.parse(localStorage.getItem('uae_leads') || '[]');
+    const newLead = {
+        id: Date.now(),
+        date: new Date().toISOString(),
+        type: type, // 'quote' or 'contact'
+        ...data,
+        status: 'new'
+    };
+    leads.push(newLead);
+    localStorage.setItem('uae_leads', JSON.stringify(leads));
+    console.log(`Saved ${type} lead:`, newLead);
+}
+
+
 // ===== NAVIGATION =====
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('navLinks');
@@ -226,6 +242,9 @@ function submitQuote() {
     // In production, you would send this to your backend/CRM
     console.log('Quote Data:', quoteData);
 
+    // Save lead to localStorage
+    saveLead('quote', quoteData);
+
     // Optionally redirect to WhatsApp
     const message = `Hi! I'm interested in setting up a ${calculatorState.jurisdiction} company. My estimated quote is ${quoteData.totalCost}. Can you help me get started?`;
     const whatsappUrl = `https://wa.me/971XXXXXXXXX?text=${encodeURIComponent(message)}`;
@@ -244,6 +263,9 @@ if (contactForm) {
 
         // In production, send to backend
         console.log('Contact Form Data:', data);
+
+        // Save lead to localStorage
+        saveLead('contact', data);
 
         // Show success message
         alert('Thank you for your message! We will get back to you within 24 hours.');
