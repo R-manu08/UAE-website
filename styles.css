@@ -1309,6 +1309,48 @@ h3 {
     transform: translateY(-3px);
 }
 
+/* =====/* Quote Contact Form */
+.quote-contact-form {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e2e8f0;
+}
+
+.quote-contact-form p {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin-bottom: 1.5rem;
+}
+
+.quote-form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.quote-form-grid input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+}
+
+.quote-form-grid input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+@media (max-width: 768px) {
+    .quote-form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* ===== FLOATING WHATSAPP ===== */
 .whatsapp-float {
     position: fixed;

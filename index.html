@@ -398,8 +398,16 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="quote-contact-form" id="quoteContactFields">
+                                <p>Enter your details to receive the detailed PDF quote & WhatsApp summary.</p>
+                                <div class="quote-form-grid">
+                                    <input type="text" id="quoteName" placeholder="Your Name" required>
+                                    <input type="email" id="quoteEmail" placeholder="Your Email" required>
+                                    <input type="tel" id="quotePhone" placeholder="Phone Number" required>
+                                </div>
+                            </div>
                             <div class="quote-cta">
-                                <button class="btn-primary-large" onclick="submitQuote()">
+                                <button class="btn-primary-large" id="confirmQuoteBtn" onclick="submitQuote()">
                                     <i class="fas fa-check"></i> Get This Quote
                                 </button>
                                 <button class="btn-secondary-large" onclick="resetCalculator()">
@@ -530,10 +538,10 @@
                 </div>
                 <div class="contact-form">
                     <form id="contactForm">
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="email" placeholder="Your Email" required>
-                        <input type="tel" placeholder="Phone Number" required>
-                        <select required>
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <input type="tel" name="phone" placeholder="Phone Number" required>
+                        <select name="service" required>
                             <option value="">Select Service</option>
                             <option value="mainland">Mainland Setup</option>
                             <option value="freezone">Free Zone Setup</option>
@@ -541,7 +549,7 @@
                             <option value="visa">Visa Services</option>
                             <option value="other">Other</option>
                         </select>
-                        <textarea placeholder="Tell us about your business..." rows="4"></textarea>
+                        <textarea name="message" placeholder="Tell us about your business..." rows="4"></textarea>
                         <button type="submit" class="btn-primary-large">
                             <i class="fas fa-paper-plane"></i> Send Message
                         </button>

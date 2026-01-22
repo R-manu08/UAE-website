@@ -223,8 +223,27 @@ function resetCalculator() {
 }
 
 function submitQuote() {
+    // Get contact info
+    const name = document.getElementById('quoteName').value;
+    const email = document.getElementById('quoteEmail').value;
+    const phone = document.getElementById('quotePhone').value;
+
+    // Simple validation
+    if (!name || !email || !phone) {
+        alert('Please fill in your contact details to receive the quote.');
+        return;
+    }
+
+    if (!validateEmail(email)) {
+        alert('Please enter a valid email address.');
+        return;
+    }
+
     // Collect form data
     const quoteData = {
+        name: name,
+        email: email,
+        phone: phone,
         jurisdiction: calculatorState.jurisdiction,
         activity: calculatorState.activity,
         visaCount: calculatorState.visaCount,
@@ -239,14 +258,11 @@ function submitQuote() {
     // Show modal or redirect to contact form
     alert('Quote submitted! Our team will contact you shortly.');
 
-    // In production, you would send this to your backend/CRM
-    console.log('Quote Data:', quoteData);
-
     // Save lead to localStorage
     saveLead('quote', quoteData);
 
     // Optionally redirect to WhatsApp
-    const message = `Hi! I'm interested in setting up a ${calculatorState.jurisdiction} company. My estimated quote is ${quoteData.totalCost}. Can you help me get started?`;
+    const message = `Hi! I'm ${name}. I'm interested in setting up a ${calculatorState.jurisdiction} company. My estimated quote is ${quoteData.totalCost}. Can you help me get started?`;
     const whatsappUrl = `https://wa.me/971XXXXXXXXX?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
 }
